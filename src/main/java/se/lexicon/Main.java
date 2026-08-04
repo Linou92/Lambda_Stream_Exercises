@@ -27,20 +27,24 @@ public class Main {
 
         // Rules (lambdas) for: active, adult (age 18 or above), and lives in Stockholm
         PersonRule isActive = Person::isActive;
-        PersonRule age = person -> person.getAge() >= 18;
-        PersonRule city = person -> person.getCity().equals("Stockholm");
+        PersonRule isAdult = person -> person.getAge() >= 18;
+        PersonRule livesInStockholm = person -> person.getCity().equals("Stockholm");
 
         // Filtered people
         IO.println("\n --- Filter persons ---");
         IO.println("Active people: " + filterPeople(people, isActive));
-        IO.println("Adult people: " + filterPeople(people, age));
-        IO.println("People living in Stockholm: " + filterPeople(people, city));
+        IO.println("Adult people: " + filterPeople(people, isAdult));
+        IO.println("People living in Stockholm: " + filterPeople(people, livesInStockholm));
 
         // Combine rules
-        /*PersonRule isActiveAndAdultAndStockholm = isActive.and(age).and(city);
+        PersonRule isActiveAndIsAdult = isActive.and(isAdult);
+        PersonRule isAdultOrLivesInStockholm = isAdult.or(livesInStockholm);
+        PersonRule notActive = isActive.negate();
 
         IO.println("\n --- Combined filters persons ---");
-        IO.println("Filtered people: " + filterPeople(people, isActiveAndAdultAndStockholm));*/
+        IO.println("Active and adult : " + filterPeople(people, isActiveAndIsAdult));
+        IO.println("Adult or lives in Stockholm : " + filterPeople(people, isAdultOrLivesInStockholm));
+        IO.println("Not active : " + filterPeople(people, notActive));
 
         // Print name and send email
         PersonAction printName = person -> IO.println(person.getName());
