@@ -1,7 +1,7 @@
 package se.lexicon.lambda;
 
-@FunctionalInterface
+/*@FunctionalInterface
 public interface PersonAction {
 
     void perform(Person person);
-}
+}*/

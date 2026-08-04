@@ -1,6 +1,6 @@
 package se.lexicon.lambda;
 
-@FunctionalInterface
+/*@FunctionalInterface
 public interface PersonRule {
 
     boolean matches(Person person);
@@ -16,4 +16,4 @@ public interface PersonRule {
     default PersonRule negate() {
         return person -> !this.matches(person);
     }
-}
+}*/
