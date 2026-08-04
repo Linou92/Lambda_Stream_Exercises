@@ -3,6 +3,7 @@ package se.lexicon;
 import se.lexicon.lambda.Person;
 import se.lexicon.lambda.PersonRule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -28,7 +29,22 @@ public class Main {
         PersonRule age = person -> person.getAge() >= 18;
         PersonRule city = person -> person.getCity().equals("Stockholm");
 
+        // Filtered people
+        IO.println("\n --- Filter persons ---");
+        IO.println("Active people: " + filterPeople(people, isActive));
+        IO.println("Adult people: " + filterPeople(people, age));
+        IO.println("People living in Stockholm: " + filterPeople(people, city));
+
     }
 
+    public static List<Person> filterPeople(List<Person> people, PersonRule rule) {
+        List<Person> filteredPeople = new ArrayList<>();
+        for (Person person : people) {
+            if(rule.matches(person)) {
+                filteredPeople.add(person);
+            }
+        }
+        return filteredPeople;
+    }
 
 }
