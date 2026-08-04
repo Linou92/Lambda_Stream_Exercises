@@ -60,5 +60,8 @@ public class Main {
         List<Person> activePeople = findPeople(people, isActive);
         IO.println("\n --- Send email to active people ---");
         activePeople.forEach(sendEmail::perform);
+
+        IO.println("\n --- Print name of active and adult people ---");
+        applyToMatching(people,isActiveAndIsAdult,printName);
     }
 }
