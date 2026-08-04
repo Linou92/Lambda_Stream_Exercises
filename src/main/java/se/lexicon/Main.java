@@ -7,6 +7,8 @@ import se.lexicon.lambda.PersonRule;
 import java.util.ArrayList;
 import java.util.List;
 
+import static se.lexicon.lambda.PersonProcessor.*;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -33,11 +35,11 @@ public class Main {
         // Filtered people
         IO.println("\n --- Filter persons ---");
         IO.println("\nActive people: ");
-        filterPeople(people, isActive).forEach(IO::println);
+        findPeople(people, isActive).forEach(IO::println);
         IO.println("\nAdult people: ");
-        filterPeople(people, isAdult).forEach(IO::println);
+        findPeople(people, isAdult).forEach(IO::println);
         IO.println("\nPeople living in Stockholm: ");
-        filterPeople(people, livesInStockholm).forEach(IO::println);
+        findPeople(people, livesInStockholm).forEach(IO::println);
 
         // Combine rules
         PersonRule isActiveAndIsAdult = isActive.and(isAdult);
@@ -46,28 +48,17 @@ public class Main {
 
         IO.println("\n --- Combined filters persons ---");
         IO.println("\nActive and adult : ");
-        filterPeople(people, isActiveAndIsAdult).forEach(IO::println);
+        findPeople(people, isActiveAndIsAdult).forEach(IO::println);
         IO.println("\nAdult or lives in Stockholm : ");
-        filterPeople(people, isAdultOrLivesInStockholm).forEach(IO::println);
+        findPeople(people, isAdultOrLivesInStockholm).forEach(IO::println);
         IO.println("\nNot active : ");
-        filterPeople(people, notActive).forEach(IO::println);
+        findPeople(people, notActive).forEach(IO::println);
 
         // Print name and send email
         PersonAction printName = person -> IO.println(person.getName());
         PersonAction sendEmail = person -> IO.println("Send email to " + person.getName());
-        List<Person> activePeople = filterPeople(people, isActive);
+        List<Person> activePeople = findPeople(people, isActive);
         IO.println("\n --- Send email to active people ---");
         activePeople.forEach(sendEmail::perform);
     }
-
-    public static List<Person> filterPeople(List<Person> people, PersonRule rule) {
-        List<Person> filteredPeople = new ArrayList<>();
-        people.forEach(person -> {
-            if (rule.matches(person)) {
-                filteredPeople.add(person);
-            }
-        });
-        return filteredPeople;
-    }
-
 }
