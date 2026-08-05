@@ -69,5 +69,13 @@ public class Main {
 
         IO.println("\n --- Print name of active and adult people ---");
         applyToMatching(people,isActiveAndIsAdult,printName);
+
+        // Stream API
+        List<Person> activePeople2 = people.stream()
+                .filter(Person::isActive)
+                .toList();
+        IO.println("\n --- Print active people ---\n" + activePeople2);
+
+
     }
 }
