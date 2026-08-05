@@ -114,6 +114,20 @@ public class Main {
                 .toList();
         IO.println("\n --- Inactive people older than 30 ---\n" + inactiveOlderThan30);
 
+        List<String> uniqueCities = people.stream()
+                .map(Person::getCity)
+                .distinct()
+                .sorted()
+                .toList();
+        IO.println("\n --- Unique Cities ---\n" + uniqueCities);
+
+        List<String> uniqueFirstLetters = people.stream()
+                .map(person -> person.getName().substring(0, 1))
+                .distinct()
+                .sorted()
+                .toList();
+        IO.println("\n --- Unique first letters ---\n" + uniqueFirstLetters);
+
 
 
 
