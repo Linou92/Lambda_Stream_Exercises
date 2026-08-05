@@ -81,5 +81,10 @@ public class Main {
                 .toList();
         IO.println("\n --- Print all names ---\n" + names);
 
+        long adultCount = people.stream()
+                .filter(person -> person.getAge()>=18)
+                .count();
+        IO.println("\n --- Number of adults ---\n" + adultCount);
+
     }
 }
