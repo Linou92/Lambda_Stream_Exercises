@@ -76,6 +76,10 @@ public class Main {
                 .toList();
         IO.println("\n --- Print active people ---\n" + activePeople2);
 
+        List<String> names = people.stream()
+                .map(Person::getName)
+                .toList();
+        IO.println("\n --- Print all names ---\n" + names);
 
     }
 }
