@@ -99,5 +99,23 @@ public class Main {
                 .orElse(null);
         IO.println("\n --- Find first person in Stockholm ---\n" + firstPersonStockholm);
 
+        List<Person> activeAdults = people.stream()
+                .filter(person -> person.getAge()>=18 && person.isActive())
+                .toList();
+        IO.println("\n --- Active adults ---\n" + activeAdults);
+
+        List<Person> activeStockholm = people.stream()
+                .filter(person -> person.getCity().equals("Stockholm") && person.isActive())
+                .toList();
+        IO.println("\n --- Active people in Stockholm ---\n" + activeStockholm);
+
+        List<Person> inactiveOlderThan30 = people.stream()
+                .filter(person -> person.getAge()>30 && !person.isActive())
+                .toList();
+        IO.println("\n --- Inactive people older than 30 ---\n" + inactiveOlderThan30);
+
+
+
+
     }
 }
