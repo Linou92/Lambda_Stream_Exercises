@@ -93,5 +93,11 @@ public class Main {
                 .toList();
         IO.println("\n --- Sorted by age ---\n" + sortedByAge);
 
+        Person firstPersonStockholm = people.stream()
+                .filter(person -> person.getCity().equals("Stockholm"))
+                .findFirst()
+                .orElse(null);
+        IO.println("\n --- Find first person in Stockholm ---\n" + firstPersonStockholm);
+
     }
 }
