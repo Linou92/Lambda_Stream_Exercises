@@ -1,6 +1,8 @@
 package se.lexicon;
 
 import se.lexicon.lambda.Person;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -85,6 +87,11 @@ public class Main {
                 .filter(person -> person.getAge()>=18)
                 .count();
         IO.println("\n --- Number of adults ---\n" + adultCount);
+
+        List<Person> sortedByAge = people.stream()
+                .sorted(Comparator.comparing(Person::getAge))
+                .toList();
+        IO.println("\n --- Sorted by age ---\n" + sortedByAge);
 
     }
 }
